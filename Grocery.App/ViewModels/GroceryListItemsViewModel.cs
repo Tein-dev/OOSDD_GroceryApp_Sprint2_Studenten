@@ -59,7 +59,7 @@ namespace Grocery.App.ViewModels
         [RelayCommand]
         public void AddProduct(Product product)
         {
-            if (AvailableProducts.Contains(product) && product.Id > 0)
+            if (product.Id > 0 && AvailableProducts.Contains(product))
             {
                 _groceryListItemsService.Add(new GroceryListItem(0, GroceryList.Id, product.Id, 1));
                 product.Stock -= 1;
