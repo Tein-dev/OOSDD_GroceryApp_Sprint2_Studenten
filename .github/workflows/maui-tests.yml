@@ -4,10 +4,18 @@ on:
   push:
     branches:
       - main
+      - develop
+      - feature/*
+      - hotfix/*
+      - release/*
       - infra/runner-toevoegen
   pull_request:
     branches:
       - main
+      - feature/*
+      - hotfix/*
+      - release/*
+      - develop
 
 jobs:
   test:
