@@ -43,17 +43,6 @@ namespace Grocery.App.ViewModels
                     AvailableProducts.Add(product);
                }
             }
-
-            foreach (var product in AvailableProducts)
-            {
-                Console.WriteLine($"Product: {product.Name}, Stock: {product.Stock}");
-            }
-
-            Console.WriteLine($"AvailableProducts count: {AvailableProducts.Count}");
-            //Maak de lijst AvailableProducts leeg
-            //Haal de lijst met producten op
-            //Controleer of het product al op de boodschappenlijst staat, zo niet zet het in de AvailableProducts lijst
-            //Houdt rekening met de voorraad (als die nul is kun je het niet meer aanbieden).            
         }
 
         partial void OnGroceryListChanged(GroceryList value)
@@ -78,12 +67,6 @@ namespace Grocery.App.ViewModels
                 GetAvailableProducts();
                 OnGroceryListChanged(GroceryList);
             }
-            //Controleer of het product bestaat en dat de Id > 0
-            //Maak een GroceryListItem met Id 0 en vul de juiste productid en grocerylistid
-            //Voeg het GroceryListItem toe aan de dataset middels de _groceryListItemsService
-            //Werk de voorraad (Stock) van het product bij en zorg dat deze wordt vastgelegd (middels _productService)
-            //Werk de lijst AvailableProducts bij, want dit product is niet meer beschikbaar
-            //call OnGroceryListChanged(GroceryList);
         }
     }
 }
