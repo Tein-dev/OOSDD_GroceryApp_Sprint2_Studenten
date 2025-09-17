@@ -62,7 +62,7 @@ namespace Grocery.App.ViewModels
             if (product.Id > 0 && AvailableProducts.Contains(product))
             {
                 _groceryListItemsService.Add(new GroceryListItem(0, GroceryList.Id, product.Id, 1));
-                product.Stock -= 1;
+                product.Stock--;
                 _productService.Update(product);
                 GetAvailableProducts();
                 OnGroceryListChanged(GroceryList);
