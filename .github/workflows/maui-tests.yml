@@ -1,34 +1,42 @@
 name: MAUI Unit Tests
- 
+
 on:
   push:
     branches:
       - main
+      - develop
+      - feature/*
+      - hotfix/*
+      - release/*
       - infra/runner-toevoegen
   pull_request:
     branches:
       - main
- 
+      - feature/*
+      - hotfix/*
+      - release/*
+      - develop
+
 jobs:
   test:
-    runs-on: ubuntu-latest  # Of windows-latest/macOS-latest als specifiek platform nodig is
+    runs-on: macOS-latest
     steps:
       - name: Haal de repository op
         uses: actions/checkout@v4
- 
+
       - name: Installeer .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'  # Gebruik de juiste versie voor MAUI
- 
+          dotnet-version: '8.0.x'
+
       - name: Installeer MAUI workloads
-        run: dotnet workload install maui-android
- 
+        run: dotnet workload install maui-maccatalyst
+
       - name: Herstel afhankelijkheden
         run: dotnet restore
- 
+
       - name: Bouw de applicatie
-        run: dotnet build --configuration Release --no-restore
- 
+        run: dotnet build --configuration Release --no-restore --framework net8.0-maccatalyst
+
       - name: Voer unit tests uit
-        run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
+        run: dotnet test --configuration Release --no-restore --no-build --verbosity normal --framework net8.0-maccatalyst
